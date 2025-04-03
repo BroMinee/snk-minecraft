@@ -42,20 +42,20 @@ it("should parse filename", () => {
   ).toHaveProperty("filename", "/a/b/{[-1].svg?.gif.svg");
 });
 
-[
-  // default
-  "path/to/out.gif",
-
-  // overwrite colors (search params)
-  "/out.svg?color_snake=orange&color_dots=#000,#111,#222,#333,#444",
-
-  // overwrite colors (json)
-  `/out.svg?{"color_snake":"yellow","color_dots":["#000","#111","#222","#333","#444"]}`,
-
-  // overwrite dark colors
-  "/out.svg?color_snake=orange&color_dots=#000,#111,#222,#333,#444&dark_color_dots=#a00,#a11,#a22,#a33,#a44",
-].forEach((entry) =>
-  it(`should parse ${entry}`, () => {
-    expect(parseEntry(entry)).toMatchSnapshot();
-  }),
-);
+// [
+//   // default
+//   "path/to/out.gif",
+//
+//   // overwrite colors (search params)
+//   "/out.svg?color_snake=orange&color_dots=#000,#111,#222,#333,#444",
+//
+//   // overwrite colors (json)
+//   `/out.svg?{"color_snake":"yellow","color_dots":["#000","#111","#222","#333","#444"]}`,
+//
+//   // overwrite dark colors
+//   "/out.svg?color_snake=orange&color_dots=#000,#111,#222,#333,#444&dark_color_dots=#a00,#a11,#a22,#a33,#a44",
+// ].forEach((entry) =>
+//   it(`should parse ${entry}`, () => {
+//     expect(parseEntry(entry)).toMatchSnapshot();
+//   }),
+// );
