@@ -9,14 +9,14 @@ export const basePalettes: Record<
 > = {
   "github-light": {
     colorDotBorder: "none",
-    colorDots: ["#url(#lapis)", "#url(#redstone)", "#url(#iron)", "url(#gold)", "url(#diamond)"],
+    colorDots: ["url(#lapis)", "url(#redstone)", "url(#iron)", "url(#gold)", "url(#diamond)"],
     colorEmpty: "url(#stone)",
     colorSnake: "url(#steve)",
   },
   "github-dark": {
     colorDotBorder: "none",
     colorEmpty: "url(#stone)",
-    colorDots: ["#url(#lapis)", "#url(#redstone)", "#url(#iron)", "url(#gold)", "url(#diamond)"],
+    colorDots: ["url(#lapis)", "url(#redstone)", "url(#iron)", "url(#gold)", "url(#diamond)"],
     colorSnake: "url(#steve)",
   },
 };

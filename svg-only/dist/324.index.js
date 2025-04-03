@@ -632,7 +632,7 @@ const generateContributionSnake = async (userName, outputs, options) => {
     console.log("🎣 fetching github user contribution");
     const cells = await getGithubUserContribution(userName, options);
     const grid = userContributionToGrid(cells);
-    const snake = snake4;
+    const snake = snake1;
     console.log("📡 computing best route");
     const chain = getBestRoute(grid, snake);
     chain.push(...getPathToPose(chain.slice(-1)[0], snake));

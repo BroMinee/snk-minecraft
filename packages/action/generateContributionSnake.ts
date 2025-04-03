@@ -1,7 +1,7 @@
 import { getGithubUserContribution } from "@snk/github-user-contribution";
 import { userContributionToGrid } from "./userContributionToGrid";
 import { getBestRoute } from "@snk/solver/getBestRoute";
-import { snake4 } from "@snk/types/__fixtures__/snake";
+import { snake1 } from "@snk/types/__fixtures__/snake";
 import { getPathToPose } from "@snk/solver/getPathToPose";
 import type { DrawOptions as DrawOptions } from "@snk/svg-creator";
 import type { AnimationOptions } from "@snk/gif-creator";
@@ -19,7 +19,7 @@ export const generateContributionSnake = async (
   const cells = await getGithubUserContribution(userName, options);
 
   const grid = userContributionToGrid(cells);
-  const snake = snake4;
+  const snake = snake1;
 
   console.log("📡 computing best route");
   const chain = getBestRoute(grid, snake)!;
