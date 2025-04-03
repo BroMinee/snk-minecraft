@@ -14,7 +14,7 @@
   ],
   "scripts": {
     "type": "tsc --noEmit",
-    "lint": "prettier -c '**/*.{ts,js,json,md,yml,yaml}' '!packages/*/dist/**' '!svg-only/dist/**'",
+    "lint": "prettier -c '**/*.{ts,js,json,md,yml,yaml}'",
     "dev:demo": "( cd packages/demo ; npm run dev )",
     "build:demo": "( cd packages/demo ; npm run build )",
     "build:action": "( cd packages/action ; npm run build )"
