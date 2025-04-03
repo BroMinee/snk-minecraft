@@ -113,7 +113,6 @@ export const createSvg = (
     generateCobbleStonePattern(),
     generateLapisPattern(),
     generateRedstonePattern(),
-    generateIronPattern(),
     generateGoldPattern(),
     generateDiamondPattern(),
     "</defs>",
@@ -166,11 +165,6 @@ const generateRedstonePattern = (): string => {
 }
 
 
-const generateIronPattern = (): string => {
-  return "<pattern id=\"iron\" viewBox=\"0,0,16,16\" width=\"100%\" height=\"100%\">" +
-      "<image href=\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQBAMAAADt3eJSAAAAG1BMVEXiwKrYr5OvjnePj49/f3+IdFV0dHR3Z09oaGgI1kKFAAAAfklEQVR42gVAwQ2CQBAcO0Cp4AIa3+5q/O+w8D4TKMDzcm8TrAAIZRsoPZWcBSyL6Tw5PI5D7lqiC1r25BlvKWs87wnGeDy0nwbJJNRuijxsomUhZL1uffw57BtqC6JYpHom8QxSjP3L4Ft8zOE04n4xv1WNwqZEEyUozBTnH6b0JCp9JVwWAAAAAElFTkSuQmCC\"/>" +
-      "</pattern>";
-}
 
 const generateGoldPattern = (): string => {
   return "<pattern id=\"gold\" viewBox=\"0,0,16,16\" width=\"100%\" height=\"100%\">" +

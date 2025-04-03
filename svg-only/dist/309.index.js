@@ -222,7 +222,6 @@ const createSvg = (grid, cells, chain, drawOptions, animationOptions) => {
         generateCobbleStonePattern(),
         generateLapisPattern(),
         generateRedstonePattern(),
-        generateIronPattern(),
         generateGoldPattern(),
         generateDiamondPattern(),
         "</defs>",
@@ -259,11 +258,6 @@ const generateLapisPattern = () => {
 const generateRedstonePattern = () => {
     return "<pattern id=\"redstone\" viewBox=\"0,0,16,16\" width=\"100%\" height=\"100%\">" +
         "<image href=\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQBAMAAADt3eJSAAAAKlBMVEX/iYm/k5OTjIz9Xl5/f390dHRoaGhpXFz3HBz/AADKBwfGBASWBgaXAwM5vTG5AAAAj0lEQVR42g3LMRLBUBQF0FtSJmwgf346hQWo3tyXwmhk3kuMUUo0SqQ3NEZnCRqFDShswFgUpz8IQa1yEjQji0ahbdW5kaBuv62rw5af21v3hJSvfspHCWOW5CpEffjnuiMWkyij5/2M2YkhDnpDrM1bmycOFpuODAJdXa676bFBkHHqkpdQyyIZAki6ROUPkAQnR+iE5aoAAAAASUVORK5CYII=\"/>" +
-        "</pattern>";
-};
-const generateIronPattern = () => {
-    return "<pattern id=\"iron\" viewBox=\"0,0,16,16\" width=\"100%\" height=\"100%\">" +
-        "<image href=\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQBAMAAADt3eJSAAAAG1BMVEXiwKrYr5OvjnePj49/f3+IdFV0dHR3Z09oaGgI1kKFAAAAfklEQVR42gVAwQ2CQBAcO0Cp4AIa3+5q/O+w8D4TKMDzcm8TrAAIZRsoPZWcBSyL6Tw5PI5D7lqiC1r25BlvKWs87wnGeDy0nwbJJNRuijxsomUhZL1uffw57BtqC6JYpHom8QxSjP3L4Ft8zOE04n4xv1WNwqZEEyUozBTnH6b0JCp9JVwWAAAAAElFTkSuQmCC\"/>" +
         "</pattern>";
 };
 const generateGoldPattern = () => {
