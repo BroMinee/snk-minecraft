@@ -8,6 +8,12 @@ import { createSnake } from "./snake";
 import { createGrid } from "./grid";
 import { h } from "./xml-utils";
 import { minifyCss } from "./css-utils";
+import {
+  generateCobbleStonePattern, generateDiamondPattern, generateGoldPattern,
+  generateLapisPattern, generateRedstonePattern,
+  generateStevePattern,
+  generateStonePattern
+} from "./pattern-utils";
 
 export type DrawOptions = {
   colorDots: Record<Color, string>;
@@ -133,49 +139,6 @@ const optimizeCss = (css: string) => minifyCss(css);
 const optimizeSvg = (svg: string) => svg;
 
 
-const generateStevePattern = (): string => {
-  return "<pattern id=\"steve\" viewBox=\"0,0,30,30\" width=\"100%\" height=\"100%\">" +
-      "<image href=\"https://raw.githubusercontent.com/BroMinee/BroMinee/main/assets/steve.png\"/>" +
-      "</pattern>";
-}
-
-
-const generateStonePattern = (): string => {
-  return "<pattern id=\"stone\" viewBox=\"0,0,16,16\" width=\"100%\" height=\"100%\">" +
-      "<image href=\"https://raw.githubusercontent.com/BroMinee/BroMinee/main/assets/stone.png\"/>" +
-      "</pattern>";
-}
-
-const generateCobbleStonePattern = (): string => {
-  return "<pattern id=\"cobblestone\" viewBox=\"0,0,16,16\" width=\"100%\" height=\"100%\">" +
-      "<image href=\"https://raw.githubusercontent.com/BroMinee/BroMinee/main/assets/cobblestone.png\"/>" +
-      "</pattern>";
-}
-
-const generateLapisPattern = (): string => {
-  return "<pattern id=\"lapis\" viewBox=\"0,0,16,16\" width=\"100%\" height=\"100%\">" +
-      "<image href=\"https://raw.githubusercontent.com/BroMinee/BroMinee/main/assets/lapis_ore.png\"/>" +
-      "</pattern>";
-}
-
-const generateRedstonePattern = (): string => {
-  return "<pattern id=\"redstone\" viewBox=\"0,0,16,16\" width=\"100%\" height=\"100%\">" +
-      "<image href=\"https://raw.githubusercontent.com/BroMinee/BroMinee/main/assets/redstone_ore.png\"/>" +
-      "</pattern>";
-}
-
-
-
-const generateGoldPattern = (): string => {
-  return "<pattern id=\"gold\" viewBox=\"0,0,16,16\" width=\"100%\" height=\"100%\">" +
-      "<image href=\"https://raw.githubusercontent.com/BroMinee/BroMinee/main/assets/gold_ore.png\"/>" +
-      "</pattern>";
-}
-const generateDiamondPattern = (): string => {
-  return "<pattern id=\"diamond\" viewBox=\"0,0,16,16\" width=\"100%\" height=\"100%\">" +
-      "<image href=\"https://raw.githubusercontent.com/BroMinee/BroMinee/main/assets/diamond_ore.png\"/>" +
-      "</pattern>";
-}
 
 
 const generateColorVar = (drawOptions: DrawOptions) =>
