@@ -30,7 +30,7 @@ export const parseEntry = (entry: string) => {
   const drawOptions: DrawOptions = {
     sizeDotBorderRadius: 2,
     sizeCell: 16,
-    sizeDot: 12,
+    sizeDot: 16,
     ...palettes["default"],
     dark: palettes["default"].dark && { ...palettes["default"].dark },
   };

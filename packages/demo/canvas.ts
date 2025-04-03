@@ -6,20 +6,16 @@ import type { DrawOptions as DrawOptions } from "@snk/svg-creator";
 export const drawOptions: DrawOptions = {
   sizeDotBorderRadius: 2,
   sizeCell: 16,
-  sizeDot: 12,
-  colorDotBorder: "#1b1f230a",
+  sizeDot: 16,
+  colorDotBorder: "none",
   colorDots: {
-    1: "#9be9a8",
-    2: "#40c463",
-    3: "#30a14e",
-    4: "#216e39",
+    1: "url(#diamond)",
+    2: "url(#gold)",
+    3: "url(#iron)",
+    4: "url(#lapis)",
   },
-  colorEmpty: "#ebedf0",
-  colorSnake: "purple",
-  dark: {
-    colorEmpty: "#161b22",
-    colorDots: { 1: "#01311f", 2: "#034525", 3: "#0f6d31", 4: "#00c647" },
-  },
+  colorEmpty: "url(#stone)",
+  colorSnake: "url(#steve)"
 };
 
 const getPointedCell =

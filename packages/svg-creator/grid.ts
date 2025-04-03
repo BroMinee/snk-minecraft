@@ -9,12 +9,11 @@ export type Options = {
   colorDotBorder: string;
   sizeCell: number;
   sizeDot: number;
-  sizeDotBorderRadius: number;
 };
 
 export const createGrid = (
   cells: (Point & { t: number | null; color: Color | Empty })[],
-  { sizeDotBorderRadius, sizeDot, sizeCell }: Options,
+  { sizeDot, sizeCell }: Options,
   duration: number,
 ) => {
   const svgElements: string[] = [];
@@ -33,7 +32,6 @@ export const createGrid = (
   let i = 0;
   for (const { x, y, color, t } of cells) {
     const id = t && "c" + (i++).toString(36);
-    const m = (sizeCell - sizeDot) / 2;
 
     if (t !== null && id) {
       const animationName = id;
@@ -41,8 +39,8 @@ export const createGrid = (
       styles.push(
         createAnimation(animationName, [
           { t: t - 0.0001, style: `fill:var(--c${color})` },
-          { t: t + 0.0001, style: `fill:var(--ce)` },
-          { t: 1, style: `fill:var(--ce)` },
+          { t: t + 0.0001, style: `fill:url(#cobblestone)` },
+          { t: 1, style: `fill:url(#cobblestone)` },
         ]),
 
         `.c.${id}{
@@ -55,10 +53,8 @@ export const createGrid = (
     svgElements.push(
       h("rect", {
         class: ["c", id].filter(Boolean).join(" "),
-        x: x * sizeCell + m,
-        y: y * sizeCell + m,
-        rx: sizeDotBorderRadius,
-        ry: sizeDotBorderRadius,
+        x: x * sizeCell,
+        y: y * sizeCell,
       }),
     );
   }
