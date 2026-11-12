@@ -29,7 +29,7 @@ const generateContributionText = async (userName, text, outputs, options) => {
         const { drawOptions } = out;
         const variant = out.variant === "deepslate" ? "deepslate" : "normal";
         console.log(`creating text svg [${variant}] (outputs[${i}])`);
-        const { createTextSvg } = await Promise.all(/* import() */[__webpack_require__.e(100), __webpack_require__.e(569)]).then(__webpack_require__.bind(__webpack_require__, 6569));
+        const { createTextSvg } = await __webpack_require__.e(/* import() */ 569).then(__webpack_require__.bind(__webpack_require__, 6569));
         return createTextSvg(grid, null, text, drawOptions, {
             dateFrom,
             dateTo,

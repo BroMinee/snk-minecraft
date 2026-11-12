@@ -156,7 +156,7 @@ export type TextSvgOptions = {
 
 export const createTextSvg = (
   grid: Grid,
-  cells: Point[] | null,
+  _cells: Point[] | null,
   text: string,
   drawOptions: DrawOptions,
   options?: TextSvgOptions,
@@ -241,19 +241,11 @@ export const createTextSvg = (
   const svgElements: string[] = [];
   const styles: string[] = [];
 
+  svgElements.push(h("rect", { x: 0, y: 0, width: grid.width * sizeCell, height: grid.height * sizeCell, fill: "var(--ce)", style: "shape-rendering:crispEdges" }));
+
   styles.push(
-    `.c{shape-rendering:geometricPrecision;stroke-width:1px;stroke:var(--cb);width:${drawOptions.sizeDot}px;height:${drawOptions.sizeDot}px;}`,
+    `.c{shape-rendering:geometricPrecision;width:${drawOptions.sizeDot}px;height:${drawOptions.sizeDot}px;}`,
   );
-
-  const allCells = cells
-    ? cells
-    : Array.from({ length: grid.width }, (_, x) =>
-        Array.from({ length: grid.height }, (_, y) => ({ x, y })),
-      ).flat();
-
-  for (const { x, y } of allCells) {
-    svgElements.push(h("rect", { class: "c", x: x * sizeCell, y: y * sizeCell, style: "fill:var(--ce)" }));
-  }
 
   for (let i = 0; i < assignments.length; i++) {
     const { from, to, color } = assignments[i];
@@ -429,14 +421,14 @@ export const createTextSvg = (
     "<desc>Generated with https://github.com/Platane/snk</desc>",
 
     "<defs>",
-    generateStevePattern(),
-    isDeepslate ? generateDeepslatePattern() : generateStonePattern(),
-    isDeepslate ? generateCobbledDeepslatePattern() : generateCobbleStonePattern(),
-    isDeepslate ? generateDeepslateLapisPattern() : generateLapisPattern(),
-    isDeepslate ? generateDeepslateRedstonePattern() : generateRedstonePattern(),
-    isDeepslate ? generateDeepslateGoldPattern() : generateGoldPattern(),
-    isDeepslate ? generateDeepslateDiamondPattern() : generateDiamondPattern(),
-    generateCommandBlockPattern(),
+    generateStevePattern(sizeCell),
+    isDeepslate ? generateDeepslatePattern(sizeCell) : generateStonePattern(sizeCell),
+    isDeepslate ? generateCobbledDeepslatePattern(sizeCell) : generateCobbleStonePattern(sizeCell),
+    isDeepslate ? generateDeepslateLapisPattern(sizeCell) : generateLapisPattern(sizeCell),
+    isDeepslate ? generateDeepslateRedstonePattern(sizeCell) : generateRedstonePattern(sizeCell),
+    isDeepslate ? generateDeepslateGoldPattern(sizeCell) : generateGoldPattern(sizeCell),
+    isDeepslate ? generateDeepslateDiamondPattern(sizeCell) : generateDiamondPattern(sizeCell),
+    generateCommandBlockPattern(sizeCell),
     "</defs>",
 
     "<style>",

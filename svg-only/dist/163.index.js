@@ -568,7 +568,7 @@ const generateContributionSnake = async (userName, outputs, options) => {
         switch (format) {
             case "svg": {
                 console.log(`🖌 creating svg (outputs[${i}])`);
-                const { createSvg } = await Promise.all(/* import() */[__webpack_require__.e(100), __webpack_require__.e(358)]).then(__webpack_require__.bind(__webpack_require__, 7358));
+                const { createSvg } = await __webpack_require__.e(/* import() */ 358).then(__webpack_require__.bind(__webpack_require__, 7358));
                 return createSvg(grid, cells, chain, drawOptions, animationOptions);
             }
             case "gif": {
