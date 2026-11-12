@@ -1,9 +1,9 @@
 "use strict";
-exports.id = 521;
-exports.ids = [521];
+exports.id = 163;
+exports.ids = [163];
 exports.modules = {
 
-/***/ 5521:
+/***/ 5163:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 
@@ -12,13 +12,13 @@ __webpack_require__.d(__webpack_exports__, {
   generateContributionSnake: () => (/* binding */ generateContributionSnake)
 });
 
-// EXTERNAL MODULE: ../github-user-contribution/index.ts
-var github_user_contribution = __webpack_require__(4770);
-// EXTERNAL MODULE: ./userContributionToGrid.ts
-var userContributionToGrid = __webpack_require__(2043);
-// EXTERNAL MODULE: ../types/grid.ts
-var types_grid = __webpack_require__(105);
-;// CONCATENATED MODULE: ../types/point.ts
+// EXTERNAL MODULE: ./packages/github-user-contribution/index.ts
+var github_user_contribution = __webpack_require__(909);
+// EXTERNAL MODULE: ./packages/action/userContributionToGrid.ts
+var userContributionToGrid = __webpack_require__(4193);
+// EXTERNAL MODULE: ./packages/types/grid.ts
+var types_grid = __webpack_require__(8490);
+;// CONCATENATED MODULE: ./packages/types/point.ts
 const around4 = [
     { x: 1, y: 0 },
     { x: 0, y: -1 },
@@ -27,7 +27,7 @@ const around4 = [
 ];
 const pointEquals = (a, b) => a.x === b.x && a.y === b.y;
 
-;// CONCATENATED MODULE: ../solver/outside.ts
+;// CONCATENATED MODULE: ./packages/solver/outside.ts
 
 
 const createOutside = (grid, color = 0) => {
@@ -55,9 +55,9 @@ const fillOutside = (outside, grid, color = 0) => {
 };
 const isOutside = (outside, x, y) => !(0,types_grid/* isInside */.FK)(outside, x, y) || (0,types_grid/* isEmpty */.Im)((0,types_grid/* getColor */.oU)(outside, x, y));
 
-// EXTERNAL MODULE: ../types/snake.ts
-var types_snake = __webpack_require__(777);
-;// CONCATENATED MODULE: ../solver/utils/sortPush.ts
+// EXTERNAL MODULE: ./packages/types/snake.ts
+var types_snake = __webpack_require__(3388);
+;// CONCATENATED MODULE: ./packages/solver/utils/sortPush.ts
 const sortPush = (arr, x, sortFn) => {
     let a = 0;
     let b = arr.length;
@@ -79,7 +79,7 @@ const sortPush = (arr, x, sortFn) => {
     arr.splice(e, 0, x);
 };
 
-;// CONCATENATED MODULE: ../solver/tunnel.ts
+;// CONCATENATED MODULE: ./packages/solver/tunnel.ts
 
 
 /**
@@ -147,7 +147,7 @@ const trimTunnelEnd = (grid, tunnel) => {
     }
 };
 
-;// CONCATENATED MODULE: ../solver/getBestTunnel.ts
+;// CONCATENATED MODULE: ./packages/solver/getBestTunnel.ts
 
 
 
@@ -219,7 +219,7 @@ const getBestTunnel = (grid, outside, x, y, color, snakeN) => {
     return one;
 };
 
-;// CONCATENATED MODULE: ../solver/getPathTo.ts
+;// CONCATENATED MODULE: ./packages/solver/getPathTo.ts
 
 
 
@@ -266,7 +266,7 @@ const getPathTo = (grid, snake0, x, y) => {
     }
 };
 
-;// CONCATENATED MODULE: ../solver/clearResidualColoredLayer.ts
+;// CONCATENATED MODULE: ./packages/solver/clearResidualColoredLayer.ts
 
 
 
@@ -374,7 +374,7 @@ const clearResidualColoredLayer_setEmptySafe = (grid, x, y) => {
         (0,types_grid/* setColorEmpty */.l$)(grid, x, y);
 };
 
-;// CONCATENATED MODULE: ../solver/clearCleanColoredLayer.ts
+;// CONCATENATED MODULE: ./packages/solver/clearCleanColoredLayer.ts
 
 
 
@@ -448,7 +448,7 @@ const clearCleanColoredLayer_setEmptySafe = (grid, x, y) => {
 };
 const clearCleanColoredLayer_isEmptySafe = (grid, x, y) => !(0,types_grid/* isInside */.FK)(grid, x, y) && (0,types_grid/* isEmpty */.Im)((0,types_grid/* getColor */.oU)(grid, x, y));
 
-;// CONCATENATED MODULE: ../solver/getBestRoute.ts
+;// CONCATENATED MODULE: ./packages/solver/getBestRoute.ts
 
 
 
@@ -470,7 +470,7 @@ const extractColors = (grid) => {
     return Array.from({ length: maxColor }, (_, i) => (i + 1));
 };
 
-;// CONCATENATED MODULE: ../types/__fixtures__/snake.ts
+;// CONCATENATED MODULE: ./packages/types/__fixtures__/snake.ts
 
 const create = (length) => (0,types_snake/* createSnakeFromCells */.yS)(Array.from({ length }, (_, i) => ({ x: i, y: -1 })));
 const snake1 = create(1);
@@ -479,7 +479,7 @@ const snake4 = create(4);
 const snake5 = create(5);
 const snake9 = create(9);
 
-;// CONCATENATED MODULE: ../solver/getPathToPose.ts
+;// CONCATENATED MODULE: ./packages/solver/getPathToPose.ts
 
 
 
@@ -547,7 +547,7 @@ const getPathToPose = (snake0, target, grid) => {
     }
 };
 
-;// CONCATENATED MODULE: ./generateContributionSnake.ts
+;// CONCATENATED MODULE: ./packages/action/generateContributionSnake.ts
 
 
 
@@ -568,12 +568,12 @@ const generateContributionSnake = async (userName, outputs, options) => {
         switch (format) {
             case "svg": {
                 console.log(`🖌 creating svg (outputs[${i}])`);
-                const { createSvg } = await Promise.all(/* import() */[__webpack_require__.e(51), __webpack_require__.e(409)]).then(__webpack_require__.bind(__webpack_require__, 9409));
+                const { createSvg } = await Promise.all(/* import() */[__webpack_require__.e(100), __webpack_require__.e(358)]).then(__webpack_require__.bind(__webpack_require__, 7358));
                 return createSvg(grid, cells, chain, drawOptions, animationOptions);
             }
             case "gif": {
                 console.log(`📹 creating gif (outputs[${i}])`);
-                const { createGif } = await Promise.all(/* import() */[__webpack_require__.e(155), __webpack_require__.e(642)]).then(__webpack_require__.bind(__webpack_require__, 3642));
+                const { createGif } = await Promise.all(/* import() */[__webpack_require__.e(397), __webpack_require__.e(661)]).then(__webpack_require__.bind(__webpack_require__, 6661));
                 return await createGif(grid, cells, chain, drawOptions, animationOptions);
             }
         }
@@ -583,13 +583,13 @@ const generateContributionSnake = async (userName, outputs, options) => {
 
 /***/ }),
 
-/***/ 2043:
+/***/ 4193:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   L: () => (/* binding */ userContributionToGrid)
 /* harmony export */ });
-/* harmony import */ var _snk_types_grid__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(105);
+/* harmony import */ var _snk_types_grid__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(8490);
 
 const userContributionToGrid = (cells) => {
     const width = Math.max(0, ...cells.map((c) => c.x)) + 1;
@@ -607,7 +607,7 @@ const userContributionToGrid = (cells) => {
 
 /***/ }),
 
-/***/ 4770:
+/***/ 909:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
@@ -679,7 +679,7 @@ const getGithubUserContribution = async (userName, o) => {
 
 /***/ }),
 
-/***/ 105:
+/***/ 8490:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
@@ -723,7 +723,7 @@ const createEmptyGrid = (width, height) => ({
 
 /***/ }),
 
-/***/ 777:
+/***/ 3388:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {

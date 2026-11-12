@@ -1,18 +1,18 @@
 "use strict";
-exports.id = 400;
-exports.ids = [400];
+exports.id = 569;
+exports.ids = [569];
 exports.modules = {
 
-/***/ 5400:
+/***/ 6569:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   createTextSvg: () => (/* binding */ createTextSvg)
 /* harmony export */ });
-/* harmony import */ var _snk_types_grid__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(105);
-/* harmony import */ var _xml_utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(1930);
-/* harmony import */ var _css_utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(3952);
-/* harmony import */ var _pattern_utils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(3017);
+/* harmony import */ var _snk_types_grid__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(8490);
+/* harmony import */ var _xml_utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(8871);
+/* harmony import */ var _css_utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(5973);
+/* harmony import */ var _pattern_utils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(868);
 
 
 
@@ -273,7 +273,7 @@ const createTextSvg = (grid, cells, text, drawOptions, options) => {
     svgElements.push((0,_xml_utils__WEBPACK_IMPORTED_MODULE_1__.h)("rect", { class: "steve", x: 0, y: 0, width: drawOptions.sizeDot, height: drawOptions.sizeDot }));
     const chatFontSize = Math.max(7, Math.floor(sizeCell * 0.55));
     const chatLineHeight = chatFontSize + 3;
-    const chatX = -sizeCell + 4;
+    const chatX = 4;
     styles.push(`.chat{font-family:"Courier New",monospace;font-size:${chatFontSize}px;fill:#fff;opacity:0;}`);
     styles.push(`.chat-bg{fill:rgba(0,0,0,0.6);opacity:0;}`);
     const chatLines = [];

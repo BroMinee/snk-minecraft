@@ -1,9 +1,9 @@
 "use strict";
-exports.id = 409;
-exports.ids = [409];
+exports.id = 358;
+exports.ids = [358];
 exports.modules = {
 
-/***/ 9409:
+/***/ 7358:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 
@@ -12,15 +12,15 @@ __webpack_require__.d(__webpack_exports__, {
   createSvg: () => (/* binding */ createSvg)
 });
 
-// EXTERNAL MODULE: ../types/grid.ts
-var types_grid = __webpack_require__(105);
-// EXTERNAL MODULE: ../types/snake.ts
-var types_snake = __webpack_require__(777);
-// EXTERNAL MODULE: ../svg-creator/xml-utils.ts
-var xml_utils = __webpack_require__(1930);
-// EXTERNAL MODULE: ../svg-creator/css-utils.ts
-var css_utils = __webpack_require__(3952);
-;// CONCATENATED MODULE: ../svg-creator/snake.ts
+// EXTERNAL MODULE: ./packages/types/grid.ts
+var types_grid = __webpack_require__(8490);
+// EXTERNAL MODULE: ./packages/types/snake.ts
+var types_snake = __webpack_require__(3388);
+// EXTERNAL MODULE: ./packages/svg-creator/xml-utils.ts
+var xml_utils = __webpack_require__(8871);
+// EXTERNAL MODULE: ./packages/svg-creator/css-utils.ts
+var css_utils = __webpack_require__(5973);
+;// CONCATENATED MODULE: ./packages/svg-creator/snake.ts
 
 
 
@@ -74,7 +74,7 @@ const removeInterpolatedPositions = (arr) => arr.filter((u, i, arr) => {
     return !(Math.abs(ex - u.x) < 0.01 && Math.abs(ey - u.y) < 0.01);
 });
 
-;// CONCATENATED MODULE: ../svg-creator/grid.ts
+;// CONCATENATED MODULE: ./packages/svg-creator/grid.ts
 
 
 const createGrid = (cells, { sizeDot, sizeCell }, duration) => {
@@ -113,9 +113,9 @@ const createGrid = (cells, { sizeDot, sizeCell }, duration) => {
     return { svgElements, styles };
 };
 
-// EXTERNAL MODULE: ../svg-creator/pattern-utils.ts
-var pattern_utils = __webpack_require__(3017);
-;// CONCATENATED MODULE: ../svg-creator/index.ts
+// EXTERNAL MODULE: ./packages/svg-creator/pattern-utils.ts
+var pattern_utils = __webpack_require__(868);
+;// CONCATENATED MODULE: ./packages/svg-creator/index.ts
 
 
 

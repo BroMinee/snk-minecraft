@@ -349,7 +349,7 @@ export const createTextSvg = (
 
   const chatFontSize = Math.max(7, Math.floor(sizeCell * 0.55));
   const chatLineHeight = chatFontSize + 3;
-  const chatX = -sizeCell + 4;
+  const chatX = 4;
 
   styles.push(
     `.chat{font-family:"Courier New",monospace;font-size:${chatFontSize}px;fill:#fff;opacity:0;}`,

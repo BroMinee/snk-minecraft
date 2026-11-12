@@ -1,16 +1,16 @@
 "use strict";
-exports.id = 369;
-exports.ids = [369];
+exports.id = 887;
+exports.ids = [887];
 exports.modules = {
 
-/***/ 5369:
+/***/ 4887:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   generateContributionText: () => (/* binding */ generateContributionText)
 /* harmony export */ });
-/* harmony import */ var _snk_github_user_contribution__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(4770);
-/* harmony import */ var _userContributionToGrid__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(2043);
+/* harmony import */ var _snk_github_user_contribution__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(909);
+/* harmony import */ var _userContributionToGrid__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(4193);
 
 
 const generateContributionText = async (userName, text, outputs, options) => {
@@ -29,7 +29,7 @@ const generateContributionText = async (userName, text, outputs, options) => {
         const { drawOptions } = out;
         const variant = out.variant === "deepslate" ? "deepslate" : "normal";
         console.log(`creating text svg [${variant}] (outputs[${i}])`);
-        const { createTextSvg } = await Promise.all(/* import() */[__webpack_require__.e(51), __webpack_require__.e(400)]).then(__webpack_require__.bind(__webpack_require__, 5400));
+        const { createTextSvg } = await Promise.all(/* import() */[__webpack_require__.e(100), __webpack_require__.e(569)]).then(__webpack_require__.bind(__webpack_require__, 6569));
         return createTextSvg(grid, null, text, drawOptions, {
             dateFrom,
             dateTo,
@@ -42,13 +42,13 @@ const generateContributionText = async (userName, text, outputs, options) => {
 
 /***/ }),
 
-/***/ 2043:
+/***/ 4193:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   L: () => (/* binding */ userContributionToGrid)
 /* harmony export */ });
-/* harmony import */ var _snk_types_grid__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(105);
+/* harmony import */ var _snk_types_grid__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(8490);
 
 const userContributionToGrid = (cells) => {
     const width = Math.max(0, ...cells.map((c) => c.x)) + 1;
@@ -66,7 +66,7 @@ const userContributionToGrid = (cells) => {
 
 /***/ }),
 
-/***/ 4770:
+/***/ 909:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
@@ -138,7 +138,7 @@ const getGithubUserContribution = async (userName, o) => {
 
 /***/ }),
 
-/***/ 105:
+/***/ 8490:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {

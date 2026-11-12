@@ -1,9 +1,9 @@
 "use strict";
-exports.id = 642;
-exports.ids = [642];
+exports.id = 661;
+exports.ids = [661];
 exports.modules = {
 
-/***/ 3642:
+/***/ 6661:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 
@@ -20,11 +20,11 @@ var external_path_ = __webpack_require__(6928);
 var external_path_default = /*#__PURE__*/__webpack_require__.n(external_path_);
 // EXTERNAL MODULE: external "child_process"
 var external_child_process_ = __webpack_require__(5317);
-// EXTERNAL MODULE: external "canvas"
-var external_canvas_ = __webpack_require__(9919);
-// EXTERNAL MODULE: ../types/grid.ts
-var types_grid = __webpack_require__(105);
-;// CONCATENATED MODULE: ../draw/pathRoundedRect.ts
+// EXTERNAL MODULE: ./node_modules/canvas/index.js
+var node_modules_canvas = __webpack_require__(7880);
+// EXTERNAL MODULE: ./packages/types/grid.ts
+var types_grid = __webpack_require__(8490);
+;// CONCATENATED MODULE: ./packages/draw/pathRoundedRect.ts
 const pathRoundedRect_pathRoundedRect = (ctx, width, height, borderRadius) => {
     ctx.moveTo(borderRadius, 0);
     ctx.arcTo(width, 0, width, height, borderRadius);
@@ -33,7 +33,7 @@ const pathRoundedRect_pathRoundedRect = (ctx, width, height, borderRadius) => {
     ctx.arcTo(0, 0, width, 0, borderRadius);
 };
 
-;// CONCATENATED MODULE: ../draw/drawGrid.ts
+;// CONCATENATED MODULE: ./packages/draw/drawGrid.ts
 
 
 const drawGrid_drawGrid = (ctx, grid, cells, o) => {
@@ -58,7 +58,7 @@ const drawGrid_drawGrid = (ctx, grid, cells, o) => {
         }
 };
 
-;// CONCATENATED MODULE: ../draw/drawSnake.ts
+;// CONCATENATED MODULE: ./packages/draw/drawSnake.ts
 
 
 const drawSnake_drawSnake = (ctx, snake, o) => {
@@ -95,7 +95,7 @@ const drawSnakeLerp = (ctx, snake0, snake1, k, o) => {
     }
 };
 
-;// CONCATENATED MODULE: ../draw/drawWorld.ts
+;// CONCATENATED MODULE: ./packages/draw/drawWorld.ts
 
 
 const drawStack = (ctx, stack, max, width, o) => {
@@ -141,9 +141,9 @@ const getCanvasWorldSize = (grid, o) => {
     return { width, height };
 };
 
-// EXTERNAL MODULE: ../types/snake.ts
-var types_snake = __webpack_require__(777);
-;// CONCATENATED MODULE: ../solver/step.ts
+// EXTERNAL MODULE: ./packages/types/snake.ts
+var types_snake = __webpack_require__(3388);
+;// CONCATENATED MODULE: ./packages/solver/step.ts
 
 
 const step = (grid, stack, snake) => {
@@ -156,15 +156,15 @@ const step = (grid, stack, snake) => {
     }
 };
 
-// EXTERNAL MODULE: ../../node_modules/tmp/lib/tmp.js
-var tmp = __webpack_require__(2644);
-// EXTERNAL MODULE: external "gifsicle"
-var external_gifsicle_ = __webpack_require__(5667);
-var external_gifsicle_default = /*#__PURE__*/__webpack_require__.n(external_gifsicle_);
-// EXTERNAL MODULE: ../../node_modules/gif-encoder-2/index.js
-var gif_encoder_2 = __webpack_require__(1680);
+// EXTERNAL MODULE: ./node_modules/tmp/lib/tmp.js
+var tmp = __webpack_require__(1288);
+// EXTERNAL MODULE: ./node_modules/gifsicle/index.js
+var gifsicle = __webpack_require__(1852);
+var gifsicle_default = /*#__PURE__*/__webpack_require__.n(gifsicle);
+// EXTERNAL MODULE: ./node_modules/gif-encoder-2/index.js
+var gif_encoder_2 = __webpack_require__(9364);
 var gif_encoder_2_default = /*#__PURE__*/__webpack_require__.n(gif_encoder_2);
-;// CONCATENATED MODULE: ../gif-creator/index.ts
+;// CONCATENATED MODULE: ./packages/gif-creator/index.ts
 
 
 
@@ -189,7 +189,7 @@ const withTmpDir = async (handler) => {
 };
 const createGif = async (grid0, cells, chain, drawOptions, animationOptions) => withTmpDir(async (dir) => {
     const { width, height } = getCanvasWorldSize(grid0, drawOptions);
-    const canvas = (0,external_canvas_.createCanvas)(width, height);
+    const canvas = (0,node_modules_canvas/* createCanvas */.Nw)(width, height);
     const ctx = canvas.getContext("2d");
     const grid = (0,types_grid/* copyGrid */.mi)(grid0);
     const stack = [];
@@ -213,7 +213,7 @@ const createGif = async (grid0, cells, chain, drawOptions, animationOptions) => 
     const optimizedFileName = external_path_default().join(dir, "out.optimized.gif");
     encoder.finish();
     external_fs_default().writeFileSync(outFileName, encoder.out.getData());
-    (0,external_child_process_.execFileSync)((external_gifsicle_default()), [
+    (0,external_child_process_.execFileSync)((gifsicle_default()), [
         //
         "--optimize=3",
         "--color-method=diversity",
