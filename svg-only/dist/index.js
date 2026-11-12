@@ -27770,6 +27770,7 @@ const parseEntry = (entry) => {
         format: format,
         drawOptions,
         animationOptions,
+        variant: sp.get("variant") ?? undefined,
     };
 };
 
@@ -27778,26 +27779,39 @@ const parseEntry = (entry) => {
 
 
 
+const writeResults = (outputs, results) => {
+    outputs.forEach((out, i) => {
+        const result = results[i];
+        if (out?.filename && result) {
+            console.log(`writing to ${out.filename}`);
+            external_fs_.mkdirSync(external_path_.dirname(out.filename), { recursive: true });
+            external_fs_.writeFileSync(out.filename, result);
+        }
+    });
+};
 (async () => {
     try {
         const userName = core.getInput("github_user_name");
+        const text = core.getInput("text");
         const outputs = parseOutputsOption(core.getMultilineInput("outputs") ?? [
             core.getInput("gif_out_path"),
             core.getInput("svg_out_path"),
         ]);
         const githubToken = process.env.GITHUB_TOKEN ?? core.getInput("github_token");
-        const { generateContributionSnake } = await __nccwpck_require__.e(/* import() */ 324).then(__nccwpck_require__.bind(__nccwpck_require__, 324));
-        const results = await generateContributionSnake(userName, outputs, {
-            githubToken,
-        });
-        outputs.forEach((out, i) => {
-            const result = results[i];
-            if (out?.filename && result) {
-                console.log(`💾 writing to ${out?.filename}`);
-                external_fs_.mkdirSync(external_path_.dirname(out?.filename), { recursive: true });
-                external_fs_.writeFileSync(out?.filename, result);
-            }
-        });
+        if (text) {
+            const { generateContributionText } = await __nccwpck_require__.e(/* import() */ 369).then(__nccwpck_require__.bind(__nccwpck_require__, 5369));
+            const results = await generateContributionText(userName, text, outputs, {
+                githubToken,
+            });
+            writeResults(outputs, results);
+        }
+        else {
+            const { generateContributionSnake } = await __nccwpck_require__.e(/* import() */ 521).then(__nccwpck_require__.bind(__nccwpck_require__, 5521));
+            const results = await generateContributionSnake(userName, outputs, {
+                githubToken,
+            });
+            writeResults(outputs, results);
+        }
     }
     catch (e) {
         core.setFailed(`Action failed with "${e.message}"`);

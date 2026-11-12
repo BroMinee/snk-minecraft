@@ -82,5 +82,6 @@ export const parseEntry = (entry: string) => {
     format: format as "svg" | "gif",
     drawOptions,
     animationOptions,
+    variant: sp.get("variant") ?? undefined,
   };
 };

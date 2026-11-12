@@ -1,5 +1,5 @@
-name: "generate-snake-game-from-github-contribution-grid"
-description: "Generates a snake game from a github user contributions grid. Output the animation as svg"
+name: "generate-minecraft-contribution-animation"
+description: "Generates a Minecraft-themed animation from a GitHub user contributions grid. Outputs SVG."
 author: "platane"
 
 runs:
@@ -14,6 +14,10 @@ inputs:
     description: "github token used to fetch the contribution calendar. Default to the action token if empty."
     required: false
     default: ${{ github.token }}
+  text:
+    description: "Text to spell with contribution cells. If set, generates a text animation instead of the snake animation."
+    required: false
+    default: ""
   outputs:
     required: false
     description: |

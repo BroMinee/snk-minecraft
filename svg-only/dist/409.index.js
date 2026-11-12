@@ -1,9 +1,9 @@
 "use strict";
-exports.id = 309;
-exports.ids = [309];
+exports.id = 409;
+exports.ids = [409];
 exports.modules = {
 
-/***/ 4309:
+/***/ 9409:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 
@@ -16,50 +16,15 @@ __webpack_require__.d(__webpack_exports__, {
 var types_grid = __webpack_require__(105);
 // EXTERNAL MODULE: ../types/snake.ts
 var types_snake = __webpack_require__(777);
-;// CONCATENATED MODULE: ../svg-creator/xml-utils.ts
-const h = (element, attributes) => `<${element} ${toAttribute(attributes)}/>`;
-const toAttribute = (o) => Object.entries(o)
-    .filter(([, value]) => value !== null)
-    .map(([name, value]) => `${name}="${value}"`)
-    .join(" ");
-
-;// CONCATENATED MODULE: ../svg-creator/css-utils.ts
-const percent = (x) => parseFloat((x * 100).toFixed(2)).toString() + "%";
-const mergeKeyFrames = (keyframes) => {
-    const s = new Map();
-    for (const { t, style } of keyframes) {
-        s.set(style, [...(s.get(style) ?? []), t]);
-    }
-    return Array.from(s.entries())
-        .map(([style, ts]) => ({ style, ts }))
-        .sort((a, b) => a.ts[0] - b.ts[0]);
-};
-/**
- * generate the keyframe animation from a list of keyframe
- */
-const createAnimation = (name, keyframes) => `@keyframes ${name}{` +
-    mergeKeyFrames(keyframes)
-        .map(({ style, ts }) => ts.map(percent).join(",") + `{${style}}`)
-        .join("") +
-    "}";
-/**
- * remove white spaces
- */
-const minifyCss = (css) => css
-    .replace(/\s+/g, " ")
-    .replace(/.\s+[,;:{}()]/g, (a) => a.replace(/\s+/g, ""))
-    .replace(/[,;:{}()]\s+./g, (a) => a.replace(/\s+/g, ""))
-    .replace(/.\s+[,;:{}()]/g, (a) => a.replace(/\s+/g, ""))
-    .replace(/[,;:{}()]\s+./g, (a) => a.replace(/\s+/g, ""))
-    .replace(/\;\s*\}/g, "}")
-    .trim();
-
+// EXTERNAL MODULE: ../svg-creator/xml-utils.ts
+var xml_utils = __webpack_require__(1930);
+// EXTERNAL MODULE: ../svg-creator/css-utils.ts
+var css_utils = __webpack_require__(3952);
 ;// CONCATENATED MODULE: ../svg-creator/snake.ts
 
 
 
-const lerp = (k, a, b) => (1 - k) * a + k * b;
-const createSnake = (chain, { sizeCell, sizeDot }, duration) => {
+const createSnake = (chain, { sizeCell }, duration) => {
     const snakeN = chain[0] ? (0,types_snake/* getSnakeLength */.T$)(chain[0]) : 0;
     const snakeParts = Array.from({ length: snakeN }, () => []);
     for (const snake of chain) {
@@ -67,23 +32,13 @@ const createSnake = (chain, { sizeCell, sizeDot }, duration) => {
         for (let i = cells.length; i--;)
             snakeParts[i].push(cells[i]);
     }
-    const svgElements = snakeParts.map((_, i, { length }) => {
-        // compute snake part size
-        const dMin = sizeDot * 0.8;
-        const dMax = sizeCell * 0.9;
-        const iMax = Math.min(4, length);
-        const u = (1 - Math.min(i, iMax) / iMax) ** 2;
-        const s = lerp(u, dMin, dMax);
-        const m = (sizeCell - s) / 2;
-        const r = Math.min(4.5, (4 * s) / sizeDot);
-        return h("rect", {
+    const svgElements = snakeParts.map((_, i, {}) => {
+        return (0,xml_utils.h)("rect", {
             class: `s s${i}`,
-            x: m.toFixed(1),
-            y: m.toFixed(1),
-            width: s.toFixed(1),
-            height: s.toFixed(1),
-            rx: r.toFixed(1),
-            ry: r.toFixed(1),
+            x: 0,
+            y: 0,
+            width: 16,
+            height: 16,
         });
     });
     const transform = ({ x, y }) => `transform:translate(${x * sizeCell}px,${y * sizeCell}px)`;
@@ -98,7 +53,7 @@ const createSnake = (chain, { sizeCell, sizeDot }, duration) => {
             const animationName = id;
             const keyframes = removeInterpolatedPositions(positions.map((tr, i, { length }) => ({ ...tr, t: i / length }))).map(({ t, ...p }) => ({ t, style: transform(p) }));
             return [
-                createAnimation(animationName, keyframes),
+                (0,css_utils/* createAnimation */.J)(animationName, keyframes),
                 `.s.${id}{
           ${transform(positions[0])};
           animation-name: ${animationName}
@@ -140,7 +95,7 @@ const createGrid = (cells, { sizeDot, sizeCell }, duration) => {
         const id = t && "c" + (i++).toString(36);
         if (t !== null && id) {
             const animationName = id;
-            styles.push(createAnimation(animationName, [
+            styles.push((0,css_utils/* createAnimation */.J)(animationName, [
                 { t: t - 0.0001, style: `fill:var(--c${color})` },
                 { t: t + 0.0001, style: `fill:url(#cobblestone)` },
                 { t: 1, style: `fill:url(#cobblestone)` },
@@ -149,7 +104,7 @@ const createGrid = (cells, { sizeDot, sizeCell }, duration) => {
           animation-name: ${animationName}
         }`);
         }
-        svgElements.push(h("rect", {
+        svgElements.push((0,xml_utils.h)("rect", {
             class: ["c", id].filter(Boolean).join(" "),
             x: x * sizeCell,
             y: y * sizeCell,
@@ -158,7 +113,10 @@ const createGrid = (cells, { sizeDot, sizeCell }, duration) => {
     return { svgElements, styles };
 };
 
+// EXTERNAL MODULE: ../svg-creator/pattern-utils.ts
+var pattern_utils = __webpack_require__(3017);
 ;// CONCATENATED MODULE: ../svg-creator/index.ts
+
 
 
 
@@ -207,7 +165,7 @@ const createSvg = (grid, cells, chain, drawOptions, animationOptions) => {
             .flat()
             .join("\n");
     const svg = [
-        h("svg", {
+        (0,xml_utils.h)("svg", {
             viewBox,
             width,
             height,
@@ -217,13 +175,13 @@ const createSvg = (grid, cells, chain, drawOptions, animationOptions) => {
         "Generated with https://github.com/Platane/snk",
         "</desc>",
         "<defs>",
-        generateStevePattern(),
-        generateStonePattern(),
-        generateCobbleStonePattern(),
-        generateLapisPattern(),
-        generateRedstonePattern(),
-        generateGoldPattern(),
-        generateDiamondPattern(),
+        (0,pattern_utils/* generateStevePattern */.NU)(),
+        (0,pattern_utils/* generateStonePattern */.xH)(),
+        (0,pattern_utils/* generateCobbleStonePattern */.O5)(),
+        (0,pattern_utils/* generateLapisPattern */.zY)(),
+        (0,pattern_utils/* generateRedstonePattern */.gD)(),
+        (0,pattern_utils/* generateGoldPattern */.eh)(),
+        (0,pattern_utils/* generateDiamondPattern */.OO)(),
         "</defs>",
         "<style>",
         optimizeCss(style),
@@ -233,43 +191,8 @@ const createSvg = (grid, cells, chain, drawOptions, animationOptions) => {
     ].join("");
     return optimizeSvg(svg);
 };
-const optimizeCss = (css) => minifyCss(css);
+const optimizeCss = (css) => (0,css_utils/* minifyCss */._)(css);
 const optimizeSvg = (svg) => svg;
-const generateStevePattern = () => {
-    return "<pattern id=\"steve\" viewBox=\"0,0,30,30\" width=\"100%\" height=\"100%\">" +
-        "<image href=\"https://raw.githubusercontent.com/BroMinee/BroMinee/main/assets/steve.png\"/>" +
-        "</pattern>";
-};
-const generateStonePattern = () => {
-    return "<pattern id=\"stone\" viewBox=\"0,0,16,16\" width=\"100%\" height=\"100%\">" +
-        "<image href=\"https://raw.githubusercontent.com/BroMinee/BroMinee/main/assets/stone.png\"/>" +
-        "</pattern>";
-};
-const generateCobbleStonePattern = () => {
-    return "<pattern id=\"cobblestone\" viewBox=\"0,0,16,16\" width=\"100%\" height=\"100%\">" +
-        "<image href=\"https://raw.githubusercontent.com/BroMinee/BroMinee/main/assets/cobblestone.png\"/>" +
-        "</pattern>";
-};
-const generateLapisPattern = () => {
-    return "<pattern id=\"lapis\" viewBox=\"0,0,16,16\" width=\"100%\" height=\"100%\">" +
-        "<image href=\"https://raw.githubusercontent.com/BroMinee/BroMinee/main/assets/lapis_ore.png\"/>" +
-        "</pattern>";
-};
-const generateRedstonePattern = () => {
-    return "<pattern id=\"redstone\" viewBox=\"0,0,16,16\" width=\"100%\" height=\"100%\">" +
-        "<image href=\"https://raw.githubusercontent.com/BroMinee/BroMinee/main/assets/redstone_ore.png\"/>" +
-        "</pattern>";
-};
-const generateGoldPattern = () => {
-    return "<pattern id=\"gold\" viewBox=\"0,0,16,16\" width=\"100%\" height=\"100%\">" +
-        "<image href=\"https://raw.githubusercontent.com/BroMinee/BroMinee/main/assets/gold_ore.png\"/>" +
-        "</pattern>";
-};
-const generateDiamondPattern = () => {
-    return "<pattern id=\"diamond\" viewBox=\"0,0,16,16\" width=\"100%\" height=\"100%\">" +
-        "<image href=\"https://raw.githubusercontent.com/BroMinee/BroMinee/main/assets/diamond_ore.png\"/>" +
-        "</pattern>";
-};
 const generateColorVar = (drawOptions) => `
     :root {
     --cb: ${drawOptions.colorDotBorder};

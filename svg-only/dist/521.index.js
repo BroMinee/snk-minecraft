@@ -1,9 +1,9 @@
 "use strict";
-exports.id = 324;
-exports.ids = [324];
+exports.id = 521;
+exports.ids = [521];
 exports.modules = {
 
-/***/ 324:
+/***/ 5521:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 
@@ -12,87 +12,12 @@ __webpack_require__.d(__webpack_exports__, {
   generateContributionSnake: () => (/* binding */ generateContributionSnake)
 });
 
-;// CONCATENATED MODULE: ../github-user-contribution/index.ts
-/**
- * get the contribution grid from a github user page
- *
- * use options.from=YYYY-MM-DD options.to=YYYY-MM-DD to get the contribution grid for a specific time range
- * or year=2019 as an alias for from=2019-01-01 to=2019-12-31
- *
- * otherwise return use the time range from today minus one year to today ( as seen in github profile page )
- *
- * @param userName github user name
- * @param options
- *
- * @example
- *  getGithubUserContribution("platane", { from: "2019-01-01", to: "2019-12-31" })
- *  getGithubUserContribution("platane", { year: 2019 })
- *
- */
-const getGithubUserContribution = async (userName, o) => {
-    const query = /* GraphQL */ `
-    query ($login: String!) {
-      user(login: $login) {
-        contributionsCollection {
-          contributionCalendar {
-            weeks {
-              contributionDays {
-                contributionCount
-                contributionLevel
-                weekday
-                date
-              }
-            }
-          }
-        }
-      }
-    }
-  `;
-    const variables = { login: userName };
-    const res = await fetch("https://api.github.com/graphql", {
-        headers: {
-            Authorization: `bearer ${o.githubToken}`,
-            "Content-Type": "application/json",
-            "User-Agent": "me@platane.me",
-        },
-        method: "POST",
-        body: JSON.stringify({ variables, query }),
-    });
-    if (!res.ok)
-        throw new Error(await res.text().catch(() => res.statusText));
-    const { data, errors } = (await res.json());
-    if (errors?.[0])
-        throw errors[0];
-    return data.user.contributionsCollection.contributionCalendar.weeks.flatMap(({ contributionDays }, x) => contributionDays.map((d) => ({
-        x,
-        y: d.weekday,
-        date: d.date,
-        count: d.contributionCount,
-        level: (d.contributionLevel === "FOURTH_QUARTILE" && 4) ||
-            (d.contributionLevel === "THIRD_QUARTILE" && 3) ||
-            (d.contributionLevel === "SECOND_QUARTILE" && 2) ||
-            (d.contributionLevel === "FIRST_QUARTILE" && 1) ||
-            0,
-    })));
-};
-
+// EXTERNAL MODULE: ../github-user-contribution/index.ts
+var github_user_contribution = __webpack_require__(4770);
+// EXTERNAL MODULE: ./userContributionToGrid.ts
+var userContributionToGrid = __webpack_require__(2043);
 // EXTERNAL MODULE: ../types/grid.ts
 var types_grid = __webpack_require__(105);
-;// CONCATENATED MODULE: ./userContributionToGrid.ts
-
-const userContributionToGrid = (cells) => {
-    const width = Math.max(0, ...cells.map((c) => c.x)) + 1;
-    const height = Math.max(0, ...cells.map((c) => c.y)) + 1;
-    const grid = (0,types_grid/* createEmptyGrid */.Kb)(width, height);
-    for (const c of cells) {
-        if (c.level > 0)
-            (0,types_grid/* setColor */.wW)(grid, c.x, c.y, c.level);
-        else
-            (0,types_grid/* setColorEmpty */.l$)(grid, c.x, c.y);
-    }
-    return grid;
-};
-
 ;// CONCATENATED MODULE: ../types/point.ts
 const around4 = [
     { x: 1, y: 0 },
@@ -630,8 +555,8 @@ const getPathToPose = (snake0, target, grid) => {
 
 const generateContributionSnake = async (userName, outputs, options) => {
     console.log("🎣 fetching github user contribution");
-    const cells = await getGithubUserContribution(userName, options);
-    const grid = userContributionToGrid(cells);
+    const cells = await (0,github_user_contribution/* getGithubUserContribution */.b)(userName, options);
+    const grid = (0,userContributionToGrid/* userContributionToGrid */.L)(cells);
     const snake = snake1;
     console.log("📡 computing best route");
     const chain = getBestRoute(grid, snake);
@@ -643,7 +568,7 @@ const generateContributionSnake = async (userName, outputs, options) => {
         switch (format) {
             case "svg": {
                 console.log(`🖌 creating svg (outputs[${i}])`);
-                const { createSvg } = await __webpack_require__.e(/* import() */ 513).then(__webpack_require__.bind(__webpack_require__, 7513));
+                const { createSvg } = await Promise.all(/* import() */[__webpack_require__.e(51), __webpack_require__.e(409)]).then(__webpack_require__.bind(__webpack_require__, 9409));
                 return createSvg(grid, cells, chain, drawOptions, animationOptions);
             }
             case "gif": {
@@ -653,6 +578,102 @@ const generateContributionSnake = async (userName, outputs, options) => {
             }
         }
     }));
+};
+
+
+/***/ }),
+
+/***/ 2043:
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   L: () => (/* binding */ userContributionToGrid)
+/* harmony export */ });
+/* harmony import */ var _snk_types_grid__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(105);
+
+const userContributionToGrid = (cells) => {
+    const width = Math.max(0, ...cells.map((c) => c.x)) + 1;
+    const height = Math.max(0, ...cells.map((c) => c.y)) + 1;
+    const grid = (0,_snk_types_grid__WEBPACK_IMPORTED_MODULE_0__/* .createEmptyGrid */ .Kb)(width, height);
+    for (const c of cells) {
+        if (c.level > 0)
+            (0,_snk_types_grid__WEBPACK_IMPORTED_MODULE_0__/* .setColor */ .wW)(grid, c.x, c.y, c.level);
+        else
+            (0,_snk_types_grid__WEBPACK_IMPORTED_MODULE_0__/* .setColorEmpty */ .l$)(grid, c.x, c.y);
+    }
+    return grid;
+};
+
+
+/***/ }),
+
+/***/ 4770:
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   b: () => (/* binding */ getGithubUserContribution)
+/* harmony export */ });
+/**
+ * get the contribution grid from a github user page
+ *
+ * use options.from=YYYY-MM-DD options.to=YYYY-MM-DD to get the contribution grid for a specific time range
+ * or year=2019 as an alias for from=2019-01-01 to=2019-12-31
+ *
+ * otherwise return use the time range from today minus one year to today ( as seen in github profile page )
+ *
+ * @param userName github user name
+ * @param options
+ *
+ * @example
+ *  getGithubUserContribution("platane", { from: "2019-01-01", to: "2019-12-31" })
+ *  getGithubUserContribution("platane", { year: 2019 })
+ *
+ */
+const getGithubUserContribution = async (userName, o) => {
+    const query = /* GraphQL */ `
+    query ($login: String!) {
+      user(login: $login) {
+        contributionsCollection {
+          contributionCalendar {
+            weeks {
+              contributionDays {
+                contributionCount
+                contributionLevel
+                weekday
+                date
+              }
+            }
+          }
+        }
+      }
+    }
+  `;
+    const variables = { login: userName };
+    const res = await fetch("https://api.github.com/graphql", {
+        headers: {
+            Authorization: `bearer ${o.githubToken}`,
+            "Content-Type": "application/json",
+            "User-Agent": "me@platane.me",
+        },
+        method: "POST",
+        body: JSON.stringify({ variables, query }),
+    });
+    if (!res.ok)
+        throw new Error(await res.text().catch(() => res.statusText));
+    const { data, errors } = (await res.json());
+    if (errors?.[0])
+        throw errors[0];
+    return data.user.contributionsCollection.contributionCalendar.weeks.flatMap(({ contributionDays }, x) => contributionDays.map((d) => ({
+        x,
+        y: d.weekday,
+        date: d.date,
+        count: d.contributionCount,
+        level: (d.contributionLevel === "FOURTH_QUARTILE" && 4) ||
+            (d.contributionLevel === "THIRD_QUARTILE" && 3) ||
+            (d.contributionLevel === "SECOND_QUARTILE" && 2) ||
+            (d.contributionLevel === "FIRST_QUARTILE" && 1) ||
+            0,
+    })));
 };
 
 
